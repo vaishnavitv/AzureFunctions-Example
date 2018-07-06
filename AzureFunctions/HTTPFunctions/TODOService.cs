@@ -10,12 +10,12 @@ using Microsoft.Azure.WebJobs.Host;
 
 namespace AzureFunctions
 {
-    public static class TODO
+    public static class TODOService
     {
 
         static Dictionary<int, string> TODOList = new Dictionary<int, string>();
 
-        static TODO()
+        static TODOService()
         {
             TODOList.Add(1, "Make tea");
             TODOList.Add(2, "Do Laundry");
@@ -134,11 +134,11 @@ namespace AzureFunctions
             }
             else if (req.Method.Equals(HttpMethod.Delete))
             {
-                return DoPut(req, log);
+                return DoDelete(req, log);
             }
             else
             {
-                return DoUnknown(req, log);
+                return DoUnknown(req, log); //Currently, all methods are defined above in the signature, won't get called.
             }
         }
     }

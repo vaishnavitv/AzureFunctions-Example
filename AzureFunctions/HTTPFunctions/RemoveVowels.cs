@@ -15,7 +15,6 @@ namespace AzureFunctions
         {
             log.Info("RemoveVowels: C# HTTP trigger function processed a request.");
 
-            // parse query parameter
             string name = null;
 
             if (name == null)
@@ -31,10 +30,7 @@ namespace AzureFunctions
             }
 
             var charsToRemove = new string[] { "a", "e", "i", "o", "u", "A", "E", "I", "O", "U" };
-            foreach (var c in charsToRemove)
-            {
-                name = name.Replace(c, string.Empty);
-            }
+            name.ReplaceAll(charsToRemove, "");
 
             return req.CreateResponse(name);
         }

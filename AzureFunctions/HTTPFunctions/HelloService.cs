@@ -8,12 +8,12 @@ using Microsoft.Azure.WebJobs.Host;
 
 namespace AzureFunctions
 {
-    public static class Greetings
+    public static class HelloService
     {
-        [FunctionName("Greetings")]
+        [FunctionName("Hello")]
         public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]HttpRequestMessage req, TraceWriter log)
         {
-            log.Info("Greetings: C# HTTP trigger function processed a request.");
+            log.Info("Hello: C# HTTP trigger function processed a request.");
 
             // parse query parameter
             string firstName = req.GetQueryNameValuePairs()
@@ -37,7 +37,7 @@ namespace AzureFunctions
                 return req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a name on the query string or in the request body");
             }
 
-            return req.CreateResponse(HttpStatusCode.OK, string.Format("Hello {0} {1}",firstName, lastName));
+            return req.CreateResponse(HttpStatusCode.OK, string.Format("Hello {0} {1}!",firstName, lastName));
         }
     }
 }
