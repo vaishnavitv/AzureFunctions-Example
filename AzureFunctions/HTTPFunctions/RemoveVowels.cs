@@ -15,7 +15,10 @@ namespace AzureFunctions
         {
             log.Info("RemoveVowels: C# HTTP trigger function processed a request.");
 
-            string name = null;
+            // parse query parameter
+            string name = req.GetQueryNameValuePairs()
+                .FirstOrDefault(parameter => string.Compare(parameter.Key, "name", true) == 0)
+                .Value;
 
             if (name == null)
             {
